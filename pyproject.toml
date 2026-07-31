@@ -1,0 +1,49 @@
+[project]
+name = "forza-telemetry-analyzer"
+version = "0.1.0"
+description = "Analyze Forza telemetry to predict ET and optimize shift points"
+readme = "README.md"
+authors = [
+    { name = "@include.tony.white@gmail.com" }
+]
+requires-python = ">=3.13,<3.14"
+dependencies = []
+
+[project.scripts]
+forza-telemetry-analyzer = "forza_telemetry_analyzer:main"
+
+[build-system]
+requires = ["uv_build>=0.12.0,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.164.0",
+    "mypy>=2.3.0",
+    "pytest>=9.1.1",
+    "ruff>=0.16.1",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
