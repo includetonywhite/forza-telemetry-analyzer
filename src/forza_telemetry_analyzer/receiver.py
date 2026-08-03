@@ -2,14 +2,14 @@ from __future__ import annotations
 
 import socket
 
-from forza_telemetry_analyzer.packet import PacketParseError, parse_packet
+from forza_telemetry_analyzer.parser import PacketParseError, parse_packet
 
 HOST = "0.0.0.0"
 PORT = 5300
 BUFFER_SIZE = 2048
 
 def receive_packets() -> None:
-    "Listen for packets from the Forza Horizon 5 game"
+    "Listen for packets from the Forza Horizon 6 game"
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         sock.bind((HOST, PORT))
         print(f"Listening for packets on {HOST}:{PORT}")
