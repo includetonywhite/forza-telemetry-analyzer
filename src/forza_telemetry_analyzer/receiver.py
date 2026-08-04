@@ -22,7 +22,7 @@ def receive_packets() -> None:
                 print(f"Invalid packet received from {address[0]}: {ERROR}")
                 continue
 
-            print(f"{telemetry_packet.timestamep_ms} ms |"
+            print(f"{telemetry_packet.timestamp_ms} ms |"
             # .0f: float to integer the number of decimal places
             f"RPM: {telemetry_packet.current_engine_rpm:.0f} |"
             f"Speed X : {telemetry_packet.velocity_x:.2f}"
