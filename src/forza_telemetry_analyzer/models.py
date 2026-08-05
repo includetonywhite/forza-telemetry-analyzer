@@ -14,12 +14,12 @@ class TelemetryData:
     velocity_x: float
     velocity_y: float
     velocity_z: float
-#    angular_velocity_x: float
-#    angular_velocity_y: float
-#    angular_velocity_z: float
-#    yaw: float
-#    pitch: float
-#    roll: float
+    angular_velocity_x: float
+    angular_velocity_y: float
+    angular_velocity_z: float
+    yaw: float
+    pitch: float
+    roll: float
 #    normalized_suspension_travel_front_left: float
 #    normalized_suspension_travel_front_right: float
 #    normalized_suspension_travel_rear_left: float

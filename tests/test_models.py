@@ -14,6 +14,12 @@ def test_telemetry_data_model() -> None:
         velocity_x = 32.4,
         velocity_y = 1.5,
         velocity_z = 0.0,
+        angular_velocity_x = 1.0,
+        angular_velocity_y = 2.0,
+        angular_velocity_z = 3.0,
+        yaw = 1.5,
+        pitch = 3.0,
+        roll = 0.0, 
     )
 
  #    assert sample.timestamp_ms == 1000

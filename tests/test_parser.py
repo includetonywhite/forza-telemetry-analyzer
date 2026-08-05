@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffff",
+        "<iIfffffffffffffff",
         1,
         123456,
         8000.0,
@@ -21,12 +21,12 @@ def test_parse_packet_returns_telemetry_data() -> None:
         32.4,
         1.5,
         0.0,
-#        angular_velocity_x,
-#        angular_velocity_y,
-#        angular_velocity_z,
-#        yaw,
-#        pitch,
-#        roll,
+        1.0,
+        2.0,
+        3.0,
+        1.5,
+        3.0,
+        0.0,
 #        normalized_suspension_travel_front_left,
 #        normalized_suspension_travel_front_right,
 #        normalized_suspension_travel_rear_left,
@@ -111,6 +111,12 @@ def test_parse_packet_returns_telemetry_data() -> None:
         velocity_x = 32.4,
         velocity_y = 1.5,
         velocity_z = 0.0,
+        angular_velocity_x = 1.0,
+        angular_velocity_y = 2.0,
+        angular_velocity_z = 3.0,
+        yaw = 1.5,
+        pitch = 3.0,
+        roll = 0.0,
     )
     result = parse_packet(packet_data)
     
@@ -125,3 +131,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.velocity_x == pytest.approx(expected_data.velocity_x)
     assert result.velocity_y == pytest.approx(expected_data.velocity_y)
     assert result.velocity_z == pytest.approx(expected_data.velocity_z)
+    assert result.angular_velocity_x == pytest.approx(expected_data.angular_velocity_x)
+    assert result.angular_velocity_y == pytest.approx(expected_data.angular_velocity_y)
+    assert result.angular_velocity_z == pytest.approx(expected_data.angular_velocity_z)
+    assert result.yaw == pytest.approx(expected_data.yaw)
+    assert result.pitch == pytest.approx(expected_data.pitch)
+    assert result.roll == pytest.approx(expected_data.roll)

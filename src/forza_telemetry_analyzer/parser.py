@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffff"
+_PACKET_FORMAT = "<iIfffffffffffffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -41,12 +41,12 @@ def parse_packet(data: bytes) -> TelemetryData:
         velocity_x,
         velocity_y,
         velocity_z,
-#        angular_velocity_x,
-#        angular_velocity_y,
-#        angular_velocity_z,
-#        yaw,
-#        pitch,
-#        roll,
+        angular_velocity_x,
+        angular_velocity_y,
+        angular_velocity_z,
+        yaw,
+        pitch,
+        roll,
 #        normalized_suspension_travel_front_left,
 #        normalized_suspension_travel_front_right,
 #        normalized_suspension_travel_rear_left,
@@ -132,12 +132,12 @@ def parse_packet(data: bytes) -> TelemetryData:
         velocity_x = velocity_x,
         velocity_y = velocity_y, 
         velocity_z = velocity_z,
-#        angular_velocity_x = angular_velocity_x,
-#        angular_velocity_y = angular_velocity_y,
-#        angular_velocity_z = anglular_velocity_z,
-#        yaw = yaw,
-#        pitch = pitch,
-#        roll = roll,
+        angular_velocity_x = angular_velocity_x,
+        angular_velocity_y = angular_velocity_y,
+        angular_velocity_z = angular_velocity_z,
+        yaw = yaw,
+        pitch = pitch,
+        roll = roll,
 #        normalized_suspension_travel_front_left = normalized_suspension_travel_front_left,
 #        normalized_suspension_travel_front_right = normalized_suspension_travel_front_right,
 #        normalized_suspension_travel_rear_left = normalized_suspension_travel_rear_left,
