@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffff"
+_PACKET_FORMAT = "<iIfffffffffffffffffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -47,10 +47,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         yaw,
         pitch,
         roll,
-#        normalized_suspension_travel_front_left,
-#        normalized_suspension_travel_front_right,
-#        normalized_suspension_travel_rear_left,
-#        normalized_suspension_travel_rear_right,
+        normalized_suspension_travel_front_left,
+        normalized_suspension_travel_front_right,
+        normalized_suspension_travel_rear_left,
+        normalized_suspension_travel_rear_right,
 #        tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left,
@@ -138,10 +138,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         yaw = yaw,
         pitch = pitch,
         roll = roll,
-#        normalized_suspension_travel_front_left = normalized_suspension_travel_front_left,
-#        normalized_suspension_travel_front_right = normalized_suspension_travel_front_right,
-#        normalized_suspension_travel_rear_left = normalized_suspension_travel_rear_left,
-#        normalized_suspension_travel_rear_right = normalized_suspension_travel_rear_right,
+        normalized_suspension_travel_front_left = normalized_suspension_travel_front_left,
+        normalized_suspension_travel_front_right = normalized_suspension_travel_front_right,
+        normalized_suspension_travel_rear_left = normalized_suspension_travel_rear_left,
+        normalized_suspension_travel_rear_right = normalized_suspension_travel_rear_right,
 #        tire_slip_ratio_front_left = tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right = tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left = tire_slip_ratio_rear_left,

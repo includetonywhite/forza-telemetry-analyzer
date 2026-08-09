@@ -19,9 +19,14 @@ def test_telemetry_data_model() -> None:
         angular_velocity_z = 3.0,
         yaw = 1.5,
         pitch = 3.0,
-        roll = 0.0, 
+        roll = 0.0,
+        normalized_suspension_travel_front_left = 0.2,
+        normalized_suspension_travel_front_right = 0.4,
+        normalized_suspension_travel_rear_left = 0.6,
+        normalized_suspension_travel_rear_right = 0.8,
+#        suspension_travel_meters_front_left = 1.0,
+#        suspension_travel_meters_front_right = 2.0,
+#        suspension_travel_meters_rear_left = 3.4,
+#        suspension_travel_meters_rear_right = 2.6, 
     )
 
- #    assert sample.timestamp_ms == 1000
-#    assert sample.throttle == 0.75
-#    assert sample.gear == 3
