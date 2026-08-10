@@ -24,10 +24,10 @@ class TelemetryData:
     normalized_suspension_travel_front_right: float
     normalized_suspension_travel_rear_left: float
     normalized_suspension_travel_rear_right: float
-#    tire_slip_ratio_front_left: float
-#    tire_slip_ratio_front_right: float
-#    tire_slip_ratio_rear_left: float
-#    tire_slip_ratio_rear_right: float
+    tire_slip_ratio_front_left: float
+    tire_slip_ratio_front_right: float
+    tire_slip_ratio_rear_left: float
+    tire_slip_ratio_rear_right: float
 #    wheel_rotation_speed_front_left: float
 #    wheel_rotation_speed_front_right: float
 #    wheel_rotation_speed_rear_left: float

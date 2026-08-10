@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffff",
+        "<iIfffffffffffffffffffffff",
         1,
         123456,
         8000.0,
@@ -31,6 +31,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         0.4,
         0.6,
         0.8,
+        0.0,
+        0.1,
+        0.2,
+        0.3,
 #        tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left,
@@ -121,6 +125,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         normalized_suspension_travel_front_right = 0.4,
         normalized_suspension_travel_rear_left = 0.6,
         normalized_suspension_travel_rear_right = 0.8,
+        tire_slip_ratio_front_left = 0.0,
+        tire_slip_ratio_front_right = 0.1,
+        tire_slip_ratio_rear_left = 0.2,
+        tire_slip_ratio_rear_right = 0.3,
 #        suspension_travel_meters_front_left = 1.0,
 #        suspension_travel_meters_front_right = 2.0,
 #        suspension_travel_meters_rear_left = 3.4,
@@ -145,3 +153,11 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.yaw == pytest.approx(expected_data.yaw)
     assert result.pitch == pytest.approx(expected_data.pitch)
     assert result.roll == pytest.approx(expected_data.roll)
+    assert result.normalized_suspension_travel_front_left == pytest.approx(expected_data.normalized_suspension_travel_front_left)
+    assert result.normalized_suspension_travel_front_right == pytest.approx(expected_data.normalized_suspension_travel_front_right)
+    assert result.normalized_suspension_travel_rear_left == pytest.approx(expected_data.normalized_suspension_travel_rear_left)
+    assert result.normalized_suspension_travel_rear_right == pytest.approx(expected_data.normalized_suspension_travel_rear_right)
+    assert result.tire_slip_ratio_front_left == pytest.approx(expected_data.tire_slip_ratio_front_left)
+    assert result.tire_slip_ratio_front_right == pytest.approx(expected_data.tire_slip_ratio_front_right)
+    assert result.tire_slip_ratio_rear_left == pytest.approx(expected_data.tire_slip_ratio_rear_left)
+    assert result.tire_slip_ratio_rear_right == pytest.approx(expected_data.tire_slip_ratio_rear_right)
