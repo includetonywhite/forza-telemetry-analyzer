@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffff"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -55,10 +55,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         tire_slip_ratio_front_right,
         tire_slip_ratio_rear_left,
         tire_slip_ratio_rear_right,
-#        wheel_rotation_speed_front_left,
-#        wheel_rotation_speed_front_right,
-#        wheel_rotation_speed_rear_left,
-#        wheel_rotation_speed_rear_right,
+        wheel_rotation_speed_front_left,
+        wheel_rotation_speed_front_right,
+        wheel_rotation_speed_rear_left,
+        wheel_rotation_speed_rear_right,
 #        wheel_on_rumble_strip_front_left,
 #        wheel_on_rumble_strip_front_right,
 #        wheel_on_rumble_strip_rear_left,
@@ -146,10 +146,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         tire_slip_ratio_front_right = tire_slip_ratio_front_right,
         tire_slip_ratio_rear_left = tire_slip_ratio_rear_left,
         tire_slip_ratio_rear_right = tire_slip_ratio_rear_right,
-#        wheel_rotation_speed_front_left = wheel_rotation_speed_front_left,
-#        wheel_rotation_speed_front_right = wheel_rotation_speed_front_right,
-#        wheel_rotation_speed_rear_left = wheel_rotation_speed_rear_left,
-#        wheel_rotation_speed_rear_right = wheel_rotation_speed_rear_right,
+        wheel_rotation_speed_front_left = wheel_rotation_speed_front_left,
+        wheel_rotation_speed_front_right = wheel_rotation_speed_front_right,
+        wheel_rotation_speed_rear_left = wheel_rotation_speed_rear_left,
+        wheel_rotation_speed_rear_right = wheel_rotation_speed_rear_right,
 #        wheel_on_rumble_strip_front_left = wheel_on_rumble_strip_front_left,
 #        wheel_on_rumble_strip_front_right = wheel_on_rumble_strip_front_right,
 #        wheel_on_rumble_strip_rear_left = wheel_on_rumble_strip_rear_left,

@@ -28,10 +28,10 @@ class TelemetryData:
     tire_slip_ratio_front_right: float
     tire_slip_ratio_rear_left: float
     tire_slip_ratio_rear_right: float
-#    wheel_rotation_speed_front_left: float
-#    wheel_rotation_speed_front_right: float
-#    wheel_rotation_speed_rear_left: float
-#    wheel_rotation_speed_rear_right: float
+    wheel_rotation_speed_front_left: float
+    wheel_rotation_speed_front_right: float
+    wheel_rotation_speed_rear_left: float
+    wheel_rotation_speed_rear_right: float
 #    wheel_on_rumble_strip_front_left: int
 #    wheel_on_rumble_strip_front_right: int
 #    wheel_on_rumble_strip_rear_left: int
