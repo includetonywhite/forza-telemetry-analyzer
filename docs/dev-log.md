@@ -19,8 +19,14 @@
 - Parser validated with pytest 
 - Ruff had errors but it due to the comment out fields and long lines
 
-# v.5.0
+## v.5.0
 - Added tire slip ratio 
+- Expanded parser.py , models.py , test_models.py, test_parser.py
+- Parser validated with pytest 
+- Ruff had errors but it due to the comment out fields and long lines
+
+## v.6.0
+- Added wheel rotation speed 
 - Expanded parser.py , models.py , test_models.py, test_parser.py
 - Parser validated with pytest 
 - Ruff had errors but it due to the comment out fields and long lines
