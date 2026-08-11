@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffff",
+        "<iIfffffffffffffffffffffffffffiiii",
         1,
         123456,
         8000.0,
@@ -39,6 +39,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         1.07,
         2.00,
         2.02,
+        1,
+        0,
+        1,
+        0,
 #        tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left,
@@ -137,6 +141,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         wheel_rotation_speed_front_right = 1.07,
         wheel_rotation_speed_rear_left = 2.00,
         wheel_rotation_speed_rear_right = 2.02,
+        wheel_on_rumble_strip_front_left = 1,
+        wheel_on_rumble_strip_front_right = 0,
+        wheel_on_rumble_strip_rear_left = 1,
+        wheel_on_rumble_strip_rear_right = 0,
 #        suspension_travel_meters_front_left = 1.0,
 #        suspension_travel_meters_front_right = 2.0,
 #        suspension_travel_meters_rear_left = 3.4,
@@ -173,7 +181,11 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.wheel_rotation_speed_front_right == pytest.approx(expected_data.wheel_rotation_speed_front_right)
     assert result.wheel_rotation_speed_rear_left == pytest.approx(expected_data.wheel_rotation_speed_rear_left)
     assert result.wheel_rotation_speed_rear_right == pytest.approx(expected_data.wheel_rotation_speed_rear_right)
-    
+    assert result.wheel_on_rumble_strip_front_left == expected_data.wheel_on_rumble_strip_front_left
+    assert result.wheel_on_rumble_strip_front_right == expected_data.wheel_on_rumble_strip_front_right
+    assert result.wheel_on_rumble_strip_rear_left == expected_data.wheel_on_rumble_strip_rear_left
+    assert result.wheel_on_rumble_strip_rear_right == expected_data.wheel_on_rumble_strip_rear_right
+
 
 
 
