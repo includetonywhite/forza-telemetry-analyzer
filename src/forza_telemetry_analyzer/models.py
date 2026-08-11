@@ -36,10 +36,10 @@ class TelemetryData:
     wheel_on_rumble_strip_front_right: int
     wheel_on_rumble_strip_rear_left: int
     wheel_on_rumble_strip_rear_right: int
-#    wheel_in_puddle_front_left: int
-#    wheel_in_puddle_front_right: int
-#    wheel_in_puddle_rear_left: int
-#    wheel_in_puddle_rear_right: int
+    wheel_in_puddle_front_left: int
+    wheel_in_puddle_front_right: int
+    wheel_in_puddle_rear_left: int
+    wheel_in_puddle_rear_right: int
 #    surface_rumble_front_left: float
 #    surface_rumble_front_right: float
 #    surface_rumble_rear_left: float

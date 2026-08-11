@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiii",
+        "<iIfffffffffffffffffffffffffffiiiiiiii",
         1,
         123456,
         8000.0,
@@ -39,6 +39,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         1.07,
         2.00,
         2.02,
+        1,
+        0,
+        1,
+        0,
         1,
         0,
         1,
@@ -145,6 +149,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         wheel_on_rumble_strip_front_right = 0,
         wheel_on_rumble_strip_rear_left = 1,
         wheel_on_rumble_strip_rear_right = 0,
+        wheel_in_puddle_front_left = 1,
+        wheel_in_puddle_front_right = 0,
+        wheel_in_puddle_rear_left = 1,
+        wheel_in_puddle_rear_right = 0,
 #        suspension_travel_meters_front_left = 1.0,
 #        suspension_travel_meters_front_right = 2.0,
 #        suspension_travel_meters_rear_left = 3.4,
