@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiii",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffff",
         1,
         123456,
         8000.0,
@@ -47,6 +47,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         0,
         1,
         0,
+        5.2,
+        2.5,
+        3.5,
+        4.2,
 #        tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left,
@@ -153,6 +157,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         wheel_in_puddle_front_right = 0,
         wheel_in_puddle_rear_left = 1,
         wheel_in_puddle_rear_right = 0,
+        surface_rumble_front_left = 5.2,
+        surface_rumble_front_right = 2.5,
+        surface_rumble_rear_left = 3.5,
+        surface_rumble_rear_right = 4.2,
 #        suspension_travel_meters_front_left = 1.0,
 #        suspension_travel_meters_front_right = 2.0,
 #        suspension_travel_meters_rear_left = 3.4,
@@ -193,6 +201,15 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.wheel_on_rumble_strip_front_right == expected_data.wheel_on_rumble_strip_front_right
     assert result.wheel_on_rumble_strip_rear_left == expected_data.wheel_on_rumble_strip_rear_left
     assert result.wheel_on_rumble_strip_rear_right == expected_data.wheel_on_rumble_strip_rear_right
+    assert result.wheel_in_puddle_front_left == expected_data.wheel_in_puddle_front_left
+    assert result.wheel_in_puddle_front_right == expected_data.wheel_in_puddle_front_right
+    assert result.wheel_in_puddle_rear_left == expected_data.wheel_in_puddle_rear_left
+    assert result.wheel_in_puddle_rear_right == expected_data.wheel_in_puddle_rear_right
+    assert result.surface_rumble_front_left == pytest.approx(expected_data.surface_rumble_front_left)
+    assert result.surface_rumble_front_right == pytest.approx(expected_data.surface_rumble_front_right)
+    assert result.surface_rumble_rear_left == pytest.approx(expected_data.surface_rumble_rear_left)
+    assert result.surface_rumble_rear_right == pytest.approx(expected_data.surface_rumble_rear_right)
+
 
 
 

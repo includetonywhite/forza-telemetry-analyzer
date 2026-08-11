@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiii"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -67,6 +67,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         wheel_in_puddle_front_right,
         wheel_in_puddle_rear_left,
         wheel_in_puddle_rear_right,
+        surface_rumble_front_left,
+        surface_rumble_front_right,
+        surface_rumble_rear_left,
+        surface_rumble_rear_right,
 #        surface_rumble_front_left,
 #        surface_rumble_front_right,
 #        surface_rumble_rear_left,
@@ -158,10 +162,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         wheel_in_puddle_front_right = wheel_in_puddle_front_right,
         wheel_in_puddle_rear_left = wheel_in_puddle_rear_left,
         wheel_in_puddle_rear_right = wheel_in_puddle_rear_right,
-#        surface_rumble_front_left = surface_rumble_front_left,
-#        surface_rumble_front_right = surface_rumble_front_right,
-#        surface_rumble_rear_left = surface_rumble_rear_left,
-#        surface_rumble_rear_right = surface_rumble_rear_right,
+        surface_rumble_front_left = surface_rumble_front_left,
+        surface_rumble_front_right = surface_rumble_front_right,
+        surface_rumble_rear_left = surface_rumble_rear_left,
+        surface_rumble_rear_right = surface_rumble_rear_right,
 #        tire_slip_angle_front_left = tire_slip_angle_front_left,
 #        tire_slip_angle_front_right = tire_slip_angle_front_right,
 #        tire_slip_angle_rear_left = tire_slip_angle_rear_left,
