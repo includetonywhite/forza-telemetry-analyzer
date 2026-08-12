@@ -58,8 +58,8 @@ class TelemetryData:
     suspension_travel_meters_rear_right: float
     car_ordinal: int
     car_class: int
-#    car_performance_index: int
-#    drivetrain_type: int
+    car_performance_index: int
+    drivetrain_type: int
 #    num_cylinders: int
 #    car_group: int
 #    smashable_vel_diff: float

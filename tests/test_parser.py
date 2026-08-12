@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffII",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIII",
         1,
         123456,
         8000.0,
@@ -65,8 +65,8 @@ def test_parse_packet_returns_telemetry_data() -> None:
         2.6,
         1235,
         3,
- #       700,
- #       2,
+        700,
+        2,
 #        car_ordinal,
 #        car_class,
 #        car_performance_index,
@@ -159,8 +159,8 @@ def test_parse_packet_returns_telemetry_data() -> None:
         suspension_travel_meters_rear_right = 2.6,
         car_ordinal = 1235,
         car_class = 3,
-  #      car_performance_index = 700,
-  #      drivetrain_type = 2,     
+        car_performance_index = 700,
+        drivetrain_type = 2,     
 
     )
     result = parse_packet(packet_data)
