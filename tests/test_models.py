@@ -55,6 +55,11 @@ def test_telemetry_data_model() -> None:
         suspension_travel_meters_front_left = 1.0,
         suspension_travel_meters_front_right = 2.0,
         suspension_travel_meters_rear_left = 3.4,
-        suspension_travel_meters_rear_right = 2.6, 
+        suspension_travel_meters_rear_right = 2.6,
+        car_ordinal = 1235,
+        car_class = 3,
+ #       car_performance_index = 700,
+  #      drivetrain_type = 2,
+
     )
 
