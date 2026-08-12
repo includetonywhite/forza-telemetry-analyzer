@@ -52,9 +52,9 @@ def test_telemetry_data_model() -> None:
         tire_combined_slip_front_right = 0.50,
         tire_combined_slip_rear_left = 0.75,
         tire_combined_slip_rear_right = 1.00,        
-#        suspension_travel_meters_front_left = 1.0,
-#        suspension_travel_meters_front_right = 2.0,
-#        suspension_travel_meters_rear_left = 3.4,
-#        suspension_travel_meters_rear_right = 2.6, 
+        suspension_travel_meters_front_left = 1.0,
+        suspension_travel_meters_front_right = 2.0,
+        suspension_travel_meters_rear_left = 3.4,
+        suspension_travel_meters_rear_right = 2.6, 
     )
 

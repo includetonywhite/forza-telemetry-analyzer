@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffff"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -79,10 +79,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         tire_combined_slip_front_right,
         tire_combined_slip_rear_left,
         tire_combined_slip_rear_right,
-#        suspension_travel_meters_front_left,
-#        suspension_travel_meters_front_right,
-#        suspension_travel_meters_rear_left,
-#        suspension_travel_meters_rear_right,
+        suspension_travel_meters_front_left,
+        suspension_travel_meters_front_right,
+        suspension_travel_meters_rear_left,
+        suspension_travel_meters_rear_right,
 #        car_ordinal,
 #        car_class,
 #        car_performance_index,
@@ -170,10 +170,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         tire_combined_slip_front_right = tire_combined_slip_front_right,
         tire_combined_slip_rear_left = tire_combined_slip_rear_left,
         tire_combined_slip_rear_right = tire_combined_slip_rear_right,
-#        suspension_travel_meters_front_left = suspension_travel_meters_front_left,
-#        suspension_travel_meters_front_right = suspension_travel_meters_front_right,
-#        suspension_travel_meters_rear_left = suspension_travel_meters_rear_left,
-#        suspension_travel_meters_rear_right = suspension_travel_meters_rear_right,
+        suspension_travel_meters_front_left = suspension_travel_meters_front_left,
+        suspension_travel_meters_front_right = suspension_travel_meters_front_right,
+        suspension_travel_meters_rear_left = suspension_travel_meters_rear_left,
+        suspension_travel_meters_rear_right = suspension_travel_meters_rear_right,
 #        car_ordinal = car_ordinal,
 #        car_class = car_class,
 #        car_performance_index = car_performance_index,

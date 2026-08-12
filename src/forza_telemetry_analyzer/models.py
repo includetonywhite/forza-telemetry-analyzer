@@ -52,10 +52,10 @@ class TelemetryData:
     tire_combined_slip_front_right: float
     tire_combined_slip_rear_left: float
     tire_combined_slip_rear_right: float
-#    suspension_travel_meters_front_left: float
-#    suspension_travel_meters_front_right: float
-#    suspension_travel_meters_rear_left: float
-#    suspension_travel_meters_rear_right: float
+    suspension_travel_meters_front_left: float
+    suspension_travel_meters_front_right: float
+    suspension_travel_meters_rear_left: float
+    suspension_travel_meters_rear_right: float
 #    car_ordinal: int
 #    car_class: int
 #    car_performance_index: int

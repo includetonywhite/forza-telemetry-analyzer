@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffff",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffff",
         1,
         123456,
         8000.0,
@@ -59,6 +59,11 @@ def test_parse_packet_returns_telemetry_data() -> None:
         0.50,
         0.75,
         1.00,
+        1.0,
+        2.0,
+        3.4,
+        2.6,
+
 #        tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left,
@@ -177,11 +182,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         tire_combined_slip_front_right = 0.50,
         tire_combined_slip_rear_left = 0.75,
         tire_combined_slip_rear_right = 1.00,
-
-#        suspension_travel_meters_front_left = 1.0,
-#        suspension_travel_meters_front_right = 2.0,
-#        suspension_travel_meters_rear_left = 3.4,
-#        suspension_travel_meters_rear_right = 2.6,
+        suspension_travel_meters_front_left = 1.0,
+        suspension_travel_meters_front_right = 2.0,
+        suspension_travel_meters_rear_left = 3.4,
+        suspension_travel_meters_rear_right = 2.6,
     )
     result = parse_packet(packet_data)
     
@@ -234,7 +238,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.tire_combined_slip_front_right == pytest.approx(expected_data.tire_combined_slip_front_right)
     assert result.tire_combined_slip_rear_left == pytest.approx(expected_data.tire_combined_slip_rear_left)
     assert result.tire_combined_slip_rear_right == pytest.approx(expected_data.tire_combined_slip_rear_right)
-
+    assert result.suspension_travel_meters_front_left == pytest.approx(expected_data.suspension_travel_meters_front_left)
+    assert result.suspension_travel_meters_front_right == pytest.approx(expected_data.suspension_travel_meters_front_right)
+    assert result.suspension_travel_meters_rear_left == pytest.approx(expected_data.suspension_travel_meters_rear_left)
+    assert result.suspension_travel_meters_rear_right == pytest.approx(expected_data.suspension_travel_meters_rear_right)
 
 
 
