@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffff"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -75,10 +75,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         tire_slip_angle_front_right,
         tire_slip_angle_rear_left,
         tire_slip_angle_rear_right,
-#        tire_combined_slip_front_left,
-#        tire_combined_slip_front_right,
-#        tire_combined_slip_rear_left,
-#        tire_combined_slip_rear_right,
+        tire_combined_slip_front_left,
+        tire_combined_slip_front_right,
+        tire_combined_slip_rear_left,
+        tire_combined_slip_rear_right,
 #        suspension_travel_meters_front_left,
 #        suspension_travel_meters_front_right,
 #        suspension_travel_meters_rear_left,
@@ -166,10 +166,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         tire_slip_angle_front_right = tire_slip_angle_front_right,
         tire_slip_angle_rear_left = tire_slip_angle_rear_left,
         tire_slip_angle_rear_right = tire_slip_angle_rear_right,
-#        tire_combined_slip_front_left = tire_combined_slip_front_left,
-#        tire_combined_slip_front_right = tire_combined_slip_front_right,
-#        tire_combined_slip_rear_left = tire_combined_slip_rear_left,
-#        tire_combined_slip_rear_right = tire_combined_slip_rear_right,
+        tire_combined_slip_front_left = tire_combined_slip_front_left,
+        tire_combined_slip_front_right = tire_combined_slip_front_right,
+        tire_combined_slip_rear_left = tire_combined_slip_rear_left,
+        tire_combined_slip_rear_right = tire_combined_slip_rear_right,
 #        suspension_travel_meters_front_left = suspension_travel_meters_front_left,
 #        suspension_travel_meters_front_right = suspension_travel_meters_front_right,
 #        suspension_travel_meters_rear_left = suspension_travel_meters_rear_left,

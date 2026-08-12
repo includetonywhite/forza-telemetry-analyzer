@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffff",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffff",
         1,
         123456,
         8000.0,
@@ -55,6 +55,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         2.1,
         1.5,
         4.5,
+        1.00,
+        0.50,
+        0.75,
+        1.00,
 #        tire_slip_ratio_front_left,
 #        tire_slip_ratio_front_right,
 #        tire_slip_ratio_rear_left,
@@ -169,6 +173,11 @@ def test_parse_packet_returns_telemetry_data() -> None:
         tire_slip_angle_front_right = 2.1,
         tire_slip_angle_rear_left = 1.5,
         tire_slip_angle_rear_right = 4.5,
+        tire_combined_slip_front_left = 1.00,
+        tire_combined_slip_front_right = 0.50,
+        tire_combined_slip_rear_left = 0.75,
+        tire_combined_slip_rear_right = 1.00,
+
 #        suspension_travel_meters_front_left = 1.0,
 #        suspension_travel_meters_front_right = 2.0,
 #        suspension_travel_meters_rear_left = 3.4,
@@ -217,6 +226,14 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.surface_rumble_front_right == pytest.approx(expected_data.surface_rumble_front_right)
     assert result.surface_rumble_rear_left == pytest.approx(expected_data.surface_rumble_rear_left)
     assert result.surface_rumble_rear_right == pytest.approx(expected_data.surface_rumble_rear_right)
+    assert result.tire_slip_angle_front_left == pytest.approx(expected_data.tire_slip_angle_front_left)
+    assert result.tire_slip_angle_front_right == pytest.approx(expected_data.tire_slip_angle_front_right)
+    assert result.tire_slip_angle_rear_left == pytest.approx(expected_data.tire_slip_angle_rear_left)
+    assert result.tire_slip_angle_rear_right == pytest.approx(expected_data.tire_slip_angle_rear_right)
+    assert result.tire_combined_slip_front_left == pytest.approx(expected_data.tire_combined_slip_front_left)
+    assert result.tire_combined_slip_front_right == pytest.approx(expected_data.tire_combined_slip_front_right)
+    assert result.tire_combined_slip_rear_left == pytest.approx(expected_data.tire_combined_slip_rear_left)
+    assert result.tire_combined_slip_rear_right == pytest.approx(expected_data.tire_combined_slip_rear_right)
 
 
 

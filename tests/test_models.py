@@ -47,7 +47,11 @@ def test_telemetry_data_model() -> None:
         tire_slip_angle_front_left = 3.6,
         tire_slip_angle_front_right = 2.1,
         tire_slip_angle_rear_left = 1.5,
-        tire_slip_angle_rear_right = 4.5
+        tire_slip_angle_rear_right = 4.5,
+        tire_combined_slip_front_left = 1.00,
+        tire_combined_slip_front_right = 0.50,
+        tire_combined_slip_rear_left = 0.75,
+        tire_combined_slip_rear_right = 1.00,        
 #        suspension_travel_meters_front_left = 1.0,
 #        suspension_travel_meters_front_right = 2.0,
 #        suspension_travel_meters_rear_left = 3.4,
