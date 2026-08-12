@@ -60,6 +60,8 @@ def test_telemetry_data_model() -> None:
         car_class = 3,
         car_performance_index = 700,
         drivetrain_type = 2,
+        num_cylinders = 4,
+        car_group = 2,
 
     )
 

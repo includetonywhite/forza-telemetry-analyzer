@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIII",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIII",
         1,
         123456,
         8000.0,
@@ -67,12 +67,8 @@ def test_parse_packet_returns_telemetry_data() -> None:
         3,
         700,
         2,
-#        car_ordinal,
-#        car_class,
-#        car_performance_index,
-#        drivetrain_type,
-#        num_cylinders,
-#        car_group,
+        4,
+        2
 #        smashable_vel_diff,
 #        smashable_mass,
 #        position_x,
@@ -160,7 +156,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
         car_ordinal = 1235,
         car_class = 3,
         car_performance_index = 700,
-        drivetrain_type = 2,     
+        drivetrain_type = 2,
+        num_cylinders = 4,
+        car_group = 2,   
 
     )
     result = parse_packet(packet_data)
@@ -218,7 +216,12 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.suspension_travel_meters_front_right == pytest.approx(expected_data.suspension_travel_meters_front_right)
     assert result.suspension_travel_meters_rear_left == pytest.approx(expected_data.suspension_travel_meters_rear_left)
     assert result.suspension_travel_meters_rear_right == pytest.approx(expected_data.suspension_travel_meters_rear_right)
-
+    assert result.car_ordinal == expected_data.car_ordinal
+    assert result.car_class == expected_data.car_class
+    assert result.car_performance_index == expected_data.car_performance_index
+    assert result.drivetrain_type == expected_data.drivetrain_type
+    assert result.num_cylinders == expected_data.num_cylinders
+    assert result.car_group == expected_data.car_group
 
 
 

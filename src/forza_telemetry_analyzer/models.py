@@ -60,8 +60,8 @@ class TelemetryData:
     car_class: int
     car_performance_index: int
     drivetrain_type: int
-#    num_cylinders: int
-#    car_group: int
+    num_cylinders: int
+    car_group: int
 #    smashable_vel_diff: float
 #    smashable_mass: float
 #    position_x: float
