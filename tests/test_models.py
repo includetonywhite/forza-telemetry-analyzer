@@ -62,6 +62,8 @@ def test_telemetry_data_model() -> None:
         drivetrain_type = 2,
         num_cylinders = 4,
         car_group = 2,
+        smashable_vel_diff = 5.23,
+        smashable_mass = 2.60,
 
     )
 

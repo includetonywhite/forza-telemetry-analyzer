@@ -62,8 +62,8 @@ class TelemetryData:
     drivetrain_type: int
     num_cylinders: int
     car_group: int
-#    smashable_vel_diff: float
-#    smashable_mass: float
+    smashable_vel_diff: float
+    smashable_mass: float
 #    position_x: float
 #    position_y: float
 #    position_z: float
