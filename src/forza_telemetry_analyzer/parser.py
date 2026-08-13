@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffII"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIII"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -110,10 +110,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         current_race_time,
         lap_number,
         race_position,
-#        accel,
-#        brake,
-#        clutch,
-#        hand_brake,
+        accel,
+        brake,
+        clutch,
+        hand_brake,
 #        gear,
 #        steer,
 #        normalized_driving_line,
@@ -201,10 +201,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         current_race_time = current_race_time,
         lap_number = lap_number,
         race_position = race_position,
-#        accel = accel,
-#        brake = brake,
-#        clutch = clutch,
-#        hand_brake = hand_brake,
+        accel = accel,
+        brake = brake,
+        clutch = clutch,
+        hand_brake = hand_brake,
 #        gear = gear,
 #        steer = steer,
 #        normalized_driving_line = normalized_driving_line,

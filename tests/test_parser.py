@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffII",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIII",
         1,
         123456,
         8000.0,
@@ -90,6 +90,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         0.40,
         1,
         5,
+        100,
+        150,
+        200,
+        250
 #        accel,
 #        brake,
 #        clutch,
@@ -180,6 +184,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         current_race_time = .40,
         lap_number = 1,
         race_position = 5,
+        accel = 100,
+        brake = 150,
+        clutch = 200,
+        hand_brake = 250,
 
 
         
@@ -262,7 +270,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.current_race_time == pytest.approx(expected_data.current_race_time)
     assert result.lap_number == pytest.approx(expected_data.lap_number)
     assert result.race_position == pytest.approx(expected_data.race_position)
-
+    assert result.accel == expected_data.accel
+    assert result.brake == expected_data.brake
+    assert result.clutch == expected_data.clutch
+    assert result.hand_brake == expected_data.hand_brake
 
 
 

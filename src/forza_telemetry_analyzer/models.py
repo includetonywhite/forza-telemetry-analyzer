@@ -83,10 +83,10 @@ class TelemetryData:
     current_race_time: float
     lap_number: int
     race_position: int
-#    accel: int
-#    brake: int
-#    clutch: int
-#    hand_brake: int
+    accel: int
+    brake: int
+    clutch: int
+    hand_brake: int
 #    gear: int
 #    steer: int
 #    normalized_driving_line: int

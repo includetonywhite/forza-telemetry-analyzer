@@ -83,6 +83,10 @@ def test_telemetry_data_model() -> None:
         current_race_time = 0.40,
         lap_number = 1,
         race_position = 5,
+        accel = 100,
+        brake = 150,
+        clutch = 200,
+        hand_brake = 250,
 
 
     )
