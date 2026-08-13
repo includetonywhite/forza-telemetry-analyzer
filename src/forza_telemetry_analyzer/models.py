@@ -64,9 +64,9 @@ class TelemetryData:
     car_group: int
     smashable_vel_diff: float
     smashable_mass: float
-#    position_x: float
-#    position_y: float
-#    position_z: float
+    position_x: float
+    position_y: float
+    position_z: float
 #    speed: float
 #    power: float
 #    torque: float

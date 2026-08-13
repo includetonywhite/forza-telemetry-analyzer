@@ -64,6 +64,9 @@ def test_telemetry_data_model() -> None:
         car_group = 2,
         smashable_vel_diff = 5.23,
         smashable_mass = 2.60,
+        position_x = 0.50,
+        position_y = 0.10,
+        position_z = 0.00,
 
     )
 

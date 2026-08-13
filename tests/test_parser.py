@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIff",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffff",
         1,
         123456,
         8000.0,
@@ -71,11 +71,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
         2,
         5.23,
         2.60,
-#        smashable_vel_diff,
-#        smashable_mass,
-#        position_x,
-#        position_y,
-#        position_z,
+        0.50,
+        0.10,
+        0.00
 #        speed,
 #        power,
 #        torque,
@@ -163,7 +161,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         car_group = 2,
         smashable_vel_diff = 5.23,
         smashable_mass = 2.60,
-  
+        position_x = 0.50,
+        position_y = 0.10,
+        position_z = 0.00,
+
 
     )
     result = parse_packet(packet_data)
@@ -227,6 +228,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.drivetrain_type == expected_data.drivetrain_type
     assert result.num_cylinders == expected_data.num_cylinders
     assert result.car_group == expected_data.car_group
+    assert result.position_x == pytest.approx(expected_data.position_x)
+    assert result.position_y == pytest.approx(expected_data.position_y)
+    assert result.position_z == pytest.approx(expected_data.position_z)
+
 
 
 
