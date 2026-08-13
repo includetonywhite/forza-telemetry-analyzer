@@ -70,6 +70,11 @@ def test_telemetry_data_model() -> None:
         speed = 250.25,
         power = 150.15,
         torque = 100.25,
+        tire_temp_front_left = 100.5,
+        tire_temp_front_right = 100.2,
+        tire_temp_rear_left = 50.2,
+        tire_temp_rear_right = 50.5,
+
 
     )
 

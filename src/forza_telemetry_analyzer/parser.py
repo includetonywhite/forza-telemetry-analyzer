@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 #We currently parse the fields need by telemetryData
 
 #_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIffffffff"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIffffffffffff"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -97,10 +97,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         speed,
         power,
         torque,
-#        tire_temp_front_left,
-#        tire_temp_front_right,
-#        tire_temp_rear_left,
-#        tire_temp_rear_right,
+        tire_temp_front_left,
+        tire_temp_front_right,
+        tire_temp_rear_left,
+        tire_temp_rear_right,
 #        boost,
 #        fuel,
 #        distance_traveled,
@@ -188,10 +188,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         speed = speed,
         power = power,
         torque = torque,
-#        tire_temp_front_left = tire_temp_front_left,
-#        tire_temp_front_right = tire_temp_front_right,
-#        tire_temp_rear_left = tire_temp_rear_left,
-#        tire_temp_rear_right = tire_temp_rear_right,
+        tire_temp_front_left = tire_temp_front_left,
+        tire_temp_front_right = tire_temp_front_right,
+        tire_temp_rear_left = tire_temp_rear_left,
+        tire_temp_rear_right = tire_temp_rear_right,
 #        boost = boost,
 #        fuel = fuel,
 #        distance_traveled = distance_traveled,
