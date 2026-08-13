@@ -67,6 +67,9 @@ def test_telemetry_data_model() -> None:
         position_x = 0.50,
         position_y = 0.10,
         position_z = 0.00,
+        speed = 250.25,
+        power = 150.15,
+        torque = 100.25,
 
     )
 

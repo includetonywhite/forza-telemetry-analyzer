@@ -67,9 +67,9 @@ class TelemetryData:
     position_x: float
     position_y: float
     position_z: float
-#    speed: float
-#    power: float
-#    torque: float
+    speed: float
+    power: float
+    torque: float
 #    tire_temp_front_left: float
 #    tire_temp_front_right: float
 #    tire_temp_rear_left: float
