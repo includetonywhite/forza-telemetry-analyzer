@@ -87,8 +87,8 @@ class TelemetryData:
     brake: int
     clutch: int
     hand_brake: int
-#    gear: int
-#    steer: int
-#    normalized_driving_line: int
-#    normalized_ai_brake_difference: int
+    gear: int
+    steer: int
+    normalized_driving_line: int
+    normalized_ai_brake_difference: int
     

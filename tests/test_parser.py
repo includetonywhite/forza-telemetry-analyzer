@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIII",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIIIIiii",
         1,
         123456,
         8000.0,
@@ -93,15 +93,11 @@ def test_parse_packet_returns_telemetry_data() -> None:
         100,
         150,
         200,
-        250
-#        accel,
-#        brake,
-#        clutch,
-#        hand_brake,
-#        gear,
-#        steer,
-#        normalized_driving_line,
-#        normalized_ai_brake_difference,
+        250,
+        1,
+        0,
+        100,
+        -50
     )
     expected_data = TelemetryData(
         is_race_on = 1,
@@ -188,10 +184,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         brake = 150,
         clutch = 200,
         hand_brake = 250,
-
-
-        
-
+        gear = 1,
+        steer = 0,
+        normalized_driving_line = 100,
+        normalized_ai_brake_difference = -50,
     )
     result = parse_packet(packet_data)
     
@@ -274,8 +270,7 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.brake == expected_data.brake
     assert result.clutch == expected_data.clutch
     assert result.hand_brake == expected_data.hand_brake
-
-
-
-
-
+    assert result.gear == expected_data.gear
+    assert result.steer == expected_data.steer
+    assert result.normalized_driving_line == expected_data.normalized_driving_line
+    assert result.normalized_ai_brake_difference == expected_data.normalized_ai_brake_difference

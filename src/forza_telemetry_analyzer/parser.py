@@ -5,8 +5,8 @@ from forza_telemetry_analyzer.models import TelemetryData
 #forza UDP Sled packet layout.
 #We currently parse the fields need by telemetryData
 
-#_PACKET_FORMAT = "<iIffffffffffffffffffffffffffffIIIIIIIIffffffffffffffffIIIIIIffffffffffffffffIIIIIIIIIIB"
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIII"
+
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIIIIiii"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 class PacketParseError(ValueError):
@@ -114,10 +114,10 @@ def parse_packet(data: bytes) -> TelemetryData:
         brake,
         clutch,
         hand_brake,
-#        gear,
-#        steer,
-#        normalized_driving_line,
-#        normalized_ai_brake_difference,
+        gear,
+        steer,
+        normalized_driving_line,
+        normalized_ai_brake_difference,
     ) = struct.unpack(_PACKET_FORMAT, data)
 
     return TelemetryData(
@@ -205,9 +205,9 @@ def parse_packet(data: bytes) -> TelemetryData:
         brake = brake,
         clutch = clutch,
         hand_brake = hand_brake,
-#        gear = gear,
-#        steer = steer,
-#        normalized_driving_line = normalized_driving_line,
-#        normalized_ai_brake_difference = normalized_ai_brake_difference,
+        gear = gear,
+        steer = steer,
+        normalized_driving_line = normalized_driving_line,
+        normalized_ai_brake_difference = normalized_ai_brake_difference,
     )
   

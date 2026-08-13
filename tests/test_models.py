@@ -87,7 +87,9 @@ def test_telemetry_data_model() -> None:
         brake = 150,
         clutch = 200,
         hand_brake = 250,
-
-
+        gear = 1,
+        steer = 0,
+        normalized_driving_line = 100,
+        normalized_ai_brake_difference = -50,
     )
 
