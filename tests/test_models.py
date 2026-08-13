@@ -74,7 +74,9 @@ def test_telemetry_data_model() -> None:
         tire_temp_front_right = 100.2,
         tire_temp_rear_left = 50.2,
         tire_temp_rear_right = 50.5,
-
+        boost = 18,
+        fuel = 0.30,
+        distance_traveled = 100,
 
     )
 

@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIffffffffffff",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffff",
         1,
         123456,
         8000.0,
@@ -81,16 +81,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
         100.2,
         50.2,
         50.5,
-#        speed,
-#        power,
-#        torque,
-#        tire_temp_front_left,
-#        tire_temp_front_right,
-#        tire_temp_rear_left,
-#        tire_temp_rear_right,
-#        boost,
-#        fuel,
-#        distance_traveled,
+        18,
+        0.30,
+        100,
 #        best_lap,
 #        last_lap,
 #        current_lap,
@@ -178,7 +171,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
         tire_temp_front_right = 100.2,
         tire_temp_rear_left = 50.2,
         tire_temp_rear_right = 50.5,
-        
+        boost = 18,
+        fuel = 0.30,
+        distance_traveled = 100,
     )
     result = parse_packet(packet_data)
     
@@ -248,7 +243,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.tire_temp_front_right == pytest.approx(expected_data.tire_temp_front_right)
     assert result.tire_temp_rear_left == pytest.approx(expected_data.tire_temp_rear_left)
     assert result.tire_temp_rear_right == pytest.approx(expected_data.tire_temp_rear_right)
-
+    assert result.boost == pytest.approx(expected_data.boost)
+    assert result.fuel == pytest.approx(expected_data.fuel)
+    assert result.distance_traveled == pytest.approx(expected_data.distance_traveled)
 
 
 

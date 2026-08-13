@@ -74,9 +74,9 @@ class TelemetryData:
     tire_temp_front_right: float
     tire_temp_rear_left: float
     tire_temp_rear_right: float
-#    boost: float
-#    fuel: float
-#    distance_traveled: float
+    boost: float
+    fuel: float
+    distance_traveled: float
 #    best_lap: float
 #    last_lap: float
 #    current_lap: float
