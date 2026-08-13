@@ -80,6 +80,10 @@ def test_telemetry_data_model() -> None:
         best_lap = 1.20,
         last_lap = 2.12,
         current_lap = 4,
+        current_race_time = 0.40,
+        lap_number = 1,
+        race_position = 5,
+
 
     )
 

@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIffffffffffffffffff",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffII",
         1,
         123456,
         8000.0,
@@ -87,12 +87,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
         1.20,
         2.12,
         4,
-#        best_lap,
-#        last_lap,
-#        current_lap,
-#        current_race_time,
-#        lap_number,
-#        race_position,
+        0.40,
+        1,
+        5,
 #        accel,
 #        brake,
 #        clutch,
@@ -180,6 +177,12 @@ def test_parse_packet_returns_telemetry_data() -> None:
         best_lap = 1.20,
         last_lap = 2.12,
         current_lap = 4,
+        current_race_time = .40,
+        lap_number = 1,
+        race_position = 5,
+
+
+        
 
     )
     result = parse_packet(packet_data)
@@ -256,6 +259,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.best_lap == pytest.approx(expected_data.best_lap)
     assert result.last_lap == pytest.approx(expected_data.last_lap)
     assert result.current_lap == pytest.approx(expected_data.current_lap)
+    assert result.current_race_time == pytest.approx(expected_data.current_race_time)
+    assert result.lap_number == pytest.approx(expected_data.lap_number)
+    assert result.race_position == pytest.approx(expected_data.race_position)
 
 
 

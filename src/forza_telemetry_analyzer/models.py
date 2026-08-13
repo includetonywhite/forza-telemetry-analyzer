@@ -80,9 +80,9 @@ class TelemetryData:
     best_lap: float
     last_lap: float
     current_lap: float
-#    current_race_time: float
-#    lap_number: int
-#    race_position: int
+    current_race_time: float
+    lap_number: int
+    race_position: int
 #    accel: int
 #    brake: int
 #    clutch: int
