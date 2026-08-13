@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.parser import parse_packet
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffff",
+        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIffffffffffffffffff",
         1,
         123456,
         8000.0,
@@ -84,6 +84,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
         18,
         0.30,
         100,
+        1.20,
+        2.12,
+        4,
 #        best_lap,
 #        last_lap,
 #        current_lap,
@@ -174,6 +177,10 @@ def test_parse_packet_returns_telemetry_data() -> None:
         boost = 18,
         fuel = 0.30,
         distance_traveled = 100,
+        best_lap = 1.20,
+        last_lap = 2.12,
+        current_lap = 4,
+
     )
     result = parse_packet(packet_data)
     
@@ -246,6 +253,9 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.boost == pytest.approx(expected_data.boost)
     assert result.fuel == pytest.approx(expected_data.fuel)
     assert result.distance_traveled == pytest.approx(expected_data.distance_traveled)
+    assert result.best_lap == pytest.approx(expected_data.best_lap)
+    assert result.last_lap == pytest.approx(expected_data.last_lap)
+    assert result.current_lap == pytest.approx(expected_data.current_lap)
 
 
 

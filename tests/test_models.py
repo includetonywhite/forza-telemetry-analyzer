@@ -77,6 +77,9 @@ def test_telemetry_data_model() -> None:
         boost = 18,
         fuel = 0.30,
         distance_traveled = 100,
+        best_lap = 1.20,
+        last_lap = 2.12,
+        current_lap = 4,
 
     )
 

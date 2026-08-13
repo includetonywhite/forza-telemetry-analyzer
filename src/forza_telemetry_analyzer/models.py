@@ -77,9 +77,9 @@ class TelemetryData:
     boost: float
     fuel: float
     distance_traveled: float
-#    best_lap: float
-#    last_lap: float
-#    current_lap: float
+    best_lap: float
+    last_lap: float
+    current_lap: float
 #    current_race_time: float
 #    lap_number: int
 #    race_position: int
