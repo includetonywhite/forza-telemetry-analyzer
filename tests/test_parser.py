@@ -208,42 +208,112 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.yaw == pytest.approx(expected_data.yaw)
     assert result.pitch == pytest.approx(expected_data.pitch)
     assert result.roll == pytest.approx(expected_data.roll)
-    assert result.normalized_suspension_travel_front_left == pytest.approx(expected_data.normalized_suspension_travel_front_left)
-    assert result.normalized_suspension_travel_front_right == pytest.approx(expected_data.normalized_suspension_travel_front_right)
-    assert result.normalized_suspension_travel_rear_left == pytest.approx(expected_data.normalized_suspension_travel_rear_left)
-    assert result.normalized_suspension_travel_rear_right == pytest.approx(expected_data.normalized_suspension_travel_rear_right)
-    assert result.tire_slip_ratio_front_left == pytest.approx(expected_data.tire_slip_ratio_front_left)
-    assert result.tire_slip_ratio_front_right == pytest.approx(expected_data.tire_slip_ratio_front_right)
-    assert result.tire_slip_ratio_rear_left == pytest.approx(expected_data.tire_slip_ratio_rear_left)
-    assert result.tire_slip_ratio_rear_right == pytest.approx(expected_data.tire_slip_ratio_rear_right)
-    assert result.wheel_rotation_speed_front_left == pytest.approx(expected_data.wheel_rotation_speed_front_left)
-    assert result.wheel_rotation_speed_front_right == pytest.approx(expected_data.wheel_rotation_speed_front_right)
-    assert result.wheel_rotation_speed_rear_left == pytest.approx(expected_data.wheel_rotation_speed_rear_left)
-    assert result.wheel_rotation_speed_rear_right == pytest.approx(expected_data.wheel_rotation_speed_rear_right)
-    assert result.wheel_on_rumble_strip_front_left == expected_data.wheel_on_rumble_strip_front_left
-    assert result.wheel_on_rumble_strip_front_right == expected_data.wheel_on_rumble_strip_front_right
-    assert result.wheel_on_rumble_strip_rear_left == expected_data.wheel_on_rumble_strip_rear_left
-    assert result.wheel_on_rumble_strip_rear_right == expected_data.wheel_on_rumble_strip_rear_right
-    assert result.wheel_in_puddle_front_left == expected_data.wheel_in_puddle_front_left
-    assert result.wheel_in_puddle_front_right == expected_data.wheel_in_puddle_front_right
-    assert result.wheel_in_puddle_rear_left == expected_data.wheel_in_puddle_rear_left
-    assert result.wheel_in_puddle_rear_right == expected_data.wheel_in_puddle_rear_right
-    assert result.surface_rumble_front_left == pytest.approx(expected_data.surface_rumble_front_left)
-    assert result.surface_rumble_front_right == pytest.approx(expected_data.surface_rumble_front_right)
-    assert result.surface_rumble_rear_left == pytest.approx(expected_data.surface_rumble_rear_left)
-    assert result.surface_rumble_rear_right == pytest.approx(expected_data.surface_rumble_rear_right)
-    assert result.tire_slip_angle_front_left == pytest.approx(expected_data.tire_slip_angle_front_left)
-    assert result.tire_slip_angle_front_right == pytest.approx(expected_data.tire_slip_angle_front_right)
-    assert result.tire_slip_angle_rear_left == pytest.approx(expected_data.tire_slip_angle_rear_left)
-    assert result.tire_slip_angle_rear_right == pytest.approx(expected_data.tire_slip_angle_rear_right)
-    assert result.tire_combined_slip_front_left == pytest.approx(expected_data.tire_combined_slip_front_left)
-    assert result.tire_combined_slip_front_right == pytest.approx(expected_data.tire_combined_slip_front_right)
-    assert result.tire_combined_slip_rear_left == pytest.approx(expected_data.tire_combined_slip_rear_left)
-    assert result.tire_combined_slip_rear_right == pytest.approx(expected_data.tire_combined_slip_rear_right)
-    assert result.suspension_travel_meters_front_left == pytest.approx(expected_data.suspension_travel_meters_front_left)
-    assert result.suspension_travel_meters_front_right == pytest.approx(expected_data.suspension_travel_meters_front_right)
-    assert result.suspension_travel_meters_rear_left == pytest.approx(expected_data.suspension_travel_meters_rear_left)
-    assert result.suspension_travel_meters_rear_right == pytest.approx(expected_data.suspension_travel_meters_rear_right)
+    assert (result.normalized_suspension_travel_front_left 
+    == pytest.approx(expected_data.normalized_suspension_travel_front_left)
+    )
+    assert (result.normalized_suspension_travel_front_right 
+    == pytest.approx(expected_data.normalized_suspension_travel_front_right)
+    )
+    assert (result.normalized_suspension_travel_rear_left 
+    == pytest.approx(expected_data.normalized_suspension_travel_rear_left)
+    )
+    assert (result.normalized_suspension_travel_rear_right 
+    == pytest.approx(expected_data.normalized_suspension_travel_rear_right)
+    )
+    assert (result.tire_slip_ratio_front_left 
+    == pytest.approx(expected_data.tire_slip_ratio_front_left)
+    )
+    assert (result.tire_slip_ratio_front_right 
+    == pytest.approx(expected_data.tire_slip_ratio_front_right)
+    )
+    assert (result.tire_slip_ratio_rear_left 
+    == pytest.approx(expected_data.tire_slip_ratio_rear_left)
+    )
+    assert (result.tire_slip_ratio_rear_right 
+    == pytest.approx(expected_data.tire_slip_ratio_rear_right)
+    )
+    assert (result.wheel_rotation_speed_front_left 
+    == pytest.approx(expected_data.wheel_rotation_speed_front_left)
+    )
+    assert (result.wheel_rotation_speed_front_right 
+    == pytest.approx(expected_data.wheel_rotation_speed_front_right)
+    )
+    assert (result.wheel_rotation_speed_rear_left 
+    == pytest.approx(expected_data.wheel_rotation_speed_rear_left)
+    )
+    assert (result.wheel_rotation_speed_rear_right 
+    == pytest.approx(expected_data.wheel_rotation_speed_rear_right)
+    )
+    assert (result.wheel_on_rumble_strip_front_left 
+    == expected_data.wheel_on_rumble_strip_front_left
+    )
+    assert (result.wheel_on_rumble_strip_front_right 
+    == expected_data.wheel_on_rumble_strip_front_right
+    )
+    assert (result.wheel_on_rumble_strip_rear_left 
+    == expected_data.wheel_on_rumble_strip_rear_left
+    )
+    assert (result.wheel_on_rumble_strip_rear_right 
+    == expected_data.wheel_on_rumble_strip_rear_right
+    )
+    assert (result.wheel_in_puddle_front_left 
+    == expected_data.wheel_in_puddle_front_left
+    )
+    assert (result.wheel_in_puddle_front_right 
+    == expected_data.wheel_in_puddle_front_right
+    )
+    assert (result.wheel_in_puddle_rear_left 
+    == expected_data.wheel_in_puddle_rear_left)
+    assert (result.wheel_in_puddle_rear_right 
+    == expected_data.wheel_in_puddle_rear_right)
+    assert (result.surface_rumble_front_left 
+    == pytest.approx(expected_data.surface_rumble_front_left)
+    )
+    assert (result.surface_rumble_front_right 
+    == pytest.approx(expected_data.surface_rumble_front_right)
+    )
+    assert (result.surface_rumble_rear_left 
+    == pytest.approx(expected_data.surface_rumble_rear_left)
+    )
+    assert (result.surface_rumble_rear_right 
+    == pytest.approx(expected_data.surface_rumble_rear_right)
+    )
+    assert (result.tire_slip_angle_front_left 
+    == pytest.approx(expected_data.tire_slip_angle_front_left)
+    )
+    assert (result.tire_slip_angle_front_right 
+    == pytest.approx(expected_data.tire_slip_angle_front_right)
+    )
+    assert (result.tire_slip_angle_rear_left 
+    == pytest.approx(expected_data.tire_slip_angle_rear_left)
+    )
+    assert (result.tire_slip_angle_rear_right 
+    == pytest.approx(expected_data.tire_slip_angle_rear_right)
+    )
+    assert (result.tire_combined_slip_front_left 
+    == pytest.approx(expected_data.tire_combined_slip_front_left)
+    )
+    assert (result.tire_combined_slip_front_right 
+    == pytest.approx(expected_data.tire_combined_slip_front_right)
+    )
+    assert (result.tire_combined_slip_rear_left 
+    == pytest.approx(expected_data.tire_combined_slip_rear_left)
+    )
+    assert (result.tire_combined_slip_rear_right 
+    == pytest.approx(expected_data.tire_combined_slip_rear_right)
+    )
+    assert (result.suspension_travel_meters_front_left 
+    == pytest.approx(expected_data.suspension_travel_meters_front_left)
+    )
+    assert (result.suspension_travel_meters_front_right 
+    == pytest.approx(expected_data.suspension_travel_meters_front_right)
+    )
+    assert (result.suspension_travel_meters_rear_left 
+    == pytest.approx(expected_data.suspension_travel_meters_rear_left)
+    )
+    assert (result.suspension_travel_meters_rear_right 
+    == pytest.approx(expected_data.suspension_travel_meters_rear_right)
+    )
     assert result.car_ordinal == expected_data.car_ordinal
     assert result.car_class == expected_data.car_class
     assert result.car_performance_index == expected_data.car_performance_index
@@ -252,12 +322,24 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.car_group == expected_data.car_group
     assert result.position_x == pytest.approx(expected_data.position_x)
     assert result.position_y == pytest.approx(expected_data.position_y)
-    assert result.position_z == pytest.approx(expected_data.position_z)
-    assert result.tire_temp_front_left == pytest.approx(expected_data.tire_temp_front_left)
-    assert result.tire_temp_front_right == pytest.approx(expected_data.tire_temp_front_right)
-    assert result.tire_temp_rear_left == pytest.approx(expected_data.tire_temp_rear_left)
-    assert result.tire_temp_rear_right == pytest.approx(expected_data.tire_temp_rear_right)
-    assert result.boost == pytest.approx(expected_data.boost)
+    assert (result.position_z 
+    == pytest.approx(expected_data.position_z)
+    )
+    assert (result.tire_temp_front_left 
+    == pytest.approx(expected_data.tire_temp_front_left)
+    )
+    assert (result.tire_temp_front_right 
+    == pytest.approx(expected_data.tire_temp_front_right)
+    )
+    assert (result.tire_temp_rear_left 
+    == pytest.approx(expected_data.tire_temp_rear_left)
+    )
+    assert (result.tire_temp_rear_right 
+    == pytest.approx(expected_data.tire_temp_rear_right)
+    )
+    assert (result.boost 
+    == pytest.approx(expected_data.boost)
+    )
     assert result.fuel == pytest.approx(expected_data.fuel)
     assert result.distance_traveled == pytest.approx(expected_data.distance_traveled)
     assert result.best_lap == pytest.approx(expected_data.best_lap)
@@ -273,4 +355,6 @@ def test_parse_packet_returns_telemetry_data() -> None:
     assert result.gear == expected_data.gear
     assert result.steer == expected_data.steer
     assert result.normalized_driving_line == expected_data.normalized_driving_line
-    assert result.normalized_ai_brake_difference == expected_data.normalized_ai_brake_difference
+    assert ( result.normalized_ai_brake_difference 
+        == expected_data.normalized_ai_brake_difference
+    )
