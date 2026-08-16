@@ -91,4 +91,3 @@ class TelemetryData:
     steer: int
     normalized_driving_line: int
     normalized_ai_brake_difference: int
-    
