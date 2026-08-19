@@ -34,16 +34,16 @@ def write_telemetry(
     file_path: Path,
     telemetry: TelemetryData,
 ) -> None:
-    file_exists = file_path.exists(),
+    file_exists = (file_path.exists(),)
 
     with file_path.open("a", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=FIELD_NAMES)
+        writer = csv.DictWriter(
+            file,
+            fieldnames=FIELD_NAMES,
+            extrasaction="ignore",
+        )
 
         if not file_exists or file_path.stat().st_size == 0:
             writer.writeheader()
 
-        writer = csv.DictWriter(
-            file,
-            fieldnames = FIELD_NAMES,
-            extrasaction = "ignore",
-        )
+        writer.writerow(vars(telemetry))

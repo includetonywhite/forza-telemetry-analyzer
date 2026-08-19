@@ -1,7 +1,8 @@
+import csv
 from pathlib import Path
 
 from forza_telemetry_analyzer.models import TelemetryData
-from forza_telemetry_analyzer.recorder import write_telemetry
+from forza_telemetry_analyzer.recorder import FIELD_NAMES, write_telemetry
 
 
 def create_test_telemetry() -> TelemetryData:
@@ -78,7 +79,7 @@ def create_test_telemetry() -> TelemetryData:
         tire_temp_rear_left=50.2,
         tire_temp_rear_right=50.5,
         boost=18,
-        fuel=0.30,
+        fuel=0.31,
         distance_traveled=100,
         best_lap=1.20,
         last_lap=2.12,
@@ -104,3 +105,41 @@ def test_write_telemetry_create_csv(tmp_path: Path) -> None:
     write_telemetry(file_path, telemetry)
 
     assert file_path.exists()
+
+
+def test_write_telemetry_writes_header_and_data(tmp_path: Path) -> None:
+    file_path = tmp_path / "telemtry.csv"
+    telemetry = create_test_telemetry()
+
+    write_telemetry(file_path, telemetry)
+    write_telemetry(file_path, telemetry)
+
+    with file_path.open(newline="") as file:
+        reader = csv.DictReader(file)
+        row = list(reader)
+
+    assert reader.fieldnames == FIELD_NAMES
+    assert len(row) == 1
+    assert row[0]["timestamp_ms"] == "123456"
+    assert row[0]["engine_max_rpm"] == "8000.0"
+    assert row[0]["current_engine_rpm"] == "4521.7"
+    assert row[0]["acceleration_x"] == "0.0"
+    assert row[0]["acceleration_y"] == "0.1"
+    assert row[0]["acceleration_z"] == "0.3"
+    assert row[0]["tire_slip_ratio_front_left"] == "0.0"
+    assert row[0]["tire_slip_ratio_front_right"] == "0.1"
+    assert row[0]["tire_slip_ratio_rear_left"] == "0.2"
+    assert row[0]["tire_slip_ratio_rear_right"] == "0.3"
+    assert row[0]["normalized_suspension_travel_front_left"] == "0.2"
+    assert row[0]["normalized_suspension_travel_front_right"] == "0.4"
+    assert row[0]["normalized_suspension_travel_rear_left"] == "0.6"
+    assert row[0]["normalized_suspension_travel_rear_right"] == "0.8"
+    assert row[0]["suspension_travel_meters_front_left"] == "1.0"
+    assert row[0]["suspension_travel_meters_front_right"] == "2.0"
+    assert row[0]["suspension_travel_meters_rear_left"] == "3.4"
+    assert row[0]["suspension_travel_meters_rear_right"] == "2.6"
+    assert row[0]["speed"] == "250.25"
+    assert row[0]["power"] == "150.15"
+    assert row[0]["torque"] == "100.25"
+    assert row[0]["boost"] == "18"
+    assert row[0]["fuel"] == "0.31"
