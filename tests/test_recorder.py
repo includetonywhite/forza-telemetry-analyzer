@@ -108,18 +108,31 @@ def test_write_telemetry_create_csv(tmp_path: Path) -> None:
 
 
 def test_write_telemetry_writes_header_and_data(tmp_path: Path) -> None:
-    file_path = tmp_path / "telemtry.csv"
+    file_path = tmp_path / "telemetry.csv"
+    telemetry = create_test_telemetry()
+
+    write_telemetry(file_path, telemetry)
+    
+
+    with file_path.open(newline="") as file:
+        reader = csv.DictReader(file)
+        row = list(reader)
+    
+    assert len(row) == 1
+
+def test_write_telemetry_appends_data(tmp_path: Path) -> None:
+    file_path = tmp_path / "telemetry.csv"
     telemetry = create_test_telemetry()
 
     write_telemetry(file_path, telemetry)
     write_telemetry(file_path, telemetry)
 
-    with file_path.open(newline="") as file:
+    with file_path.open(newline = "") as file:
         reader = csv.DictReader(file)
         row = list(reader)
-
+    assert len(row) == 2
     assert reader.fieldnames == FIELD_NAMES
-    assert len(row) == 1
+    
     assert row[0]["timestamp_ms"] == "123456"
     assert row[0]["engine_max_rpm"] == "8000.0"
     assert row[0]["current_engine_rpm"] == "4521.7"
