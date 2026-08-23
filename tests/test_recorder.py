@@ -1,7 +1,12 @@
 import csv
+import struct
 from pathlib import Path
 
+import pytest
+
 from forza_telemetry_analyzer.models import TelemetryData
+from forza_telemetry_analyzer.parser import _PACKET_FORMAT
+from forza_telemetry_analyzer.receiver import process_packet
 from forza_telemetry_analyzer.recorder import FIELD_NAMES, write_telemetry
 
 
@@ -112,13 +117,13 @@ def test_write_telemetry_writes_header_and_data(tmp_path: Path) -> None:
     telemetry = create_test_telemetry()
 
     write_telemetry(file_path, telemetry)
-    
 
     with file_path.open(newline="") as file:
         reader = csv.DictReader(file)
         row = list(reader)
-    
+
     assert len(row) == 1
+
 
 def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     file_path = tmp_path / "telemetry.csv"
@@ -127,12 +132,12 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     write_telemetry(file_path, telemetry)
     write_telemetry(file_path, telemetry)
 
-    with file_path.open(newline = "") as file:
+    with file_path.open(newline="") as file:
         reader = csv.DictReader(file)
         row = list(reader)
     assert len(row) == 2
     assert reader.fieldnames == FIELD_NAMES
-    
+
     assert row[0]["timestamp_ms"] == "123456"
     assert row[0]["engine_max_rpm"] == "8000.0"
     assert row[0]["current_engine_rpm"] == "4521.7"
@@ -156,3 +161,39 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     assert row[0]["torque"] == "100.25"
     assert row[0]["boost"] == "18"
     assert row[0]["fuel"] == "0.31"
+
+
+def test_parse_packet_writes_telemetry_to_csv(tmp_path: Path) -> None:
+    values = [0] * 88
+
+    values[0] = 1
+    values[1] = 123456
+    values[4] = 4521.7
+    values[5] = 0.1
+    values[6] = 0.2
+    values[7] = 0.3
+    values[8] = 0.0
+
+    packet_data = struct.pack(_PACKET_FORMAT, *values)
+
+    address = ("10.0.0.149", 5300)
+    output_file = tmp_path / "telemetry.csv"
+
+    result = process_packet(
+        packet_data,
+        address,
+        output_file,
+    )
+
+    assert result is not None
+    assert output_file.exists()
+
+    with output_file.open(newline="") as file:
+        reader = csv.DictReader(file)
+        rows = list(reader)
+
+    assert len(rows) == 1
+    assert rows[0]["timestamp_ms"] == "123456"
+    assert float(rows[0]["current_engine_rpm"]) == pytest.approx(4521.7)
+    assert float(rows[0]["acceleration_x"]) == pytest.approx(0.1)
+    assert float(rows[0]["tire_slip_ratio_front_left"]) == pytest.approx(0.0)
