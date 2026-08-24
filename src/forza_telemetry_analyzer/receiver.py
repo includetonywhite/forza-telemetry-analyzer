@@ -3,9 +3,9 @@ from __future__ import annotations
 import socket
 from pathlib import Path
 
+from forza_telemetry_analyzer.models import TelemetryData
 from forza_telemetry_analyzer.parser import PacketParseError, parse_packet
 from forza_telemetry_analyzer.recorder import write_telemetry
-from forza_telemetry_analyzer.models import TelemetryData
 
 HOST = "0.0.0.0"
 PORT = 5300
@@ -22,7 +22,10 @@ def receive_packets() -> None:
             data, address = sock.recvfrom(BUFFER_SIZE)
 
             try:
-                telemetry_packet = parse_packet(data)
+                telemetry_packet = process_packet(data, address)
+
+                if telemetry_packet is None:
+                    continue
             except PacketParseError as ERROR:
                 print(f"Invalid packet received from {address[0]}: {ERROR}")
                 continue
@@ -34,10 +37,22 @@ def receive_packets() -> None:
                 f"Speed X : {telemetry_packet.velocity_x:.2f}"
             )
 
+
 def process_packet(
     data: bytes,
-    address: tuple[str,int],
+    address: tuple[str, int],
+    output_file: Path = OUTPUT_FILE,
 ) -> TelemetryData | None:
+
+    try:
+        telemetry_packet = parse_packet(data)
+    except PacketParseError as error:
+        print(f"Invlid packet received from {address[0]}: {error}")
+        return None
+    write_telemetry(output_file, telemetry_packet)
+
+    return telemetry_packet
+
 
 if __name__ == "__main__":
     receive_packets()
