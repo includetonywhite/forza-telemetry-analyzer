@@ -6,7 +6,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 # We currently parse the fields need by telemetryData
 
 
-_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIIIIiii"
+_PACKET_FORMAT = "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffHBBBBBBbbbx"
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
 
 
