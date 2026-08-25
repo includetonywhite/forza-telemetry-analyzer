@@ -177,7 +177,7 @@ def test_parse_packet_writes_telemetry_to_csv(tmp_path: Path) -> None:
     packet_data = struct.pack(_PACKET_FORMAT, *values)
 
     address = ("10.0.0.149", 5300)
-    output_file = tmp_path / "telemetry.csv"
+    file_path = tmp_path / "telemetry.csv"
 
     result = process_packet(
         packet_data,
