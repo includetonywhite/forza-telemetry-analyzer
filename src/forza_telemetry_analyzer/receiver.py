@@ -47,7 +47,7 @@ def process_packet(
     try:
         telemetry_packet = parse_packet(data)
     except PacketParseError as error:
-        print(f"Invlid packet received from {address[0]}: {error}")
+        print(f"Invalid packet received from {address[0]}: {error}")
         return None
     write_telemetry(output_file, telemetry_packet)
 
