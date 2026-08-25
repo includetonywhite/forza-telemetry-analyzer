@@ -4,12 +4,12 @@ import struct
 import pytest
 
 from forza_telemetry_analyzer.models import TelemetryData
-from forza_telemetry_analyzer.parser import parse_packet
+from forza_telemetry_analyzer.parser import _PACKET_FORMAT,parse_packet
 
 
 def test_parse_packet_returns_telemetry_data() -> None:
     packet_data = struct.pack(
-        "<iIfffffffffffffffffffffffffffiiiiiiiiffffffffffffffffIIIIIIfffffffffffffffffffIIIIIIIiii",
+        _PACKET_FORMAT,
         1,
         123456,
         8000.0,
