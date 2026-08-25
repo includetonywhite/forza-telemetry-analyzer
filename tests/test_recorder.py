@@ -182,7 +182,7 @@ def test_parse_packet_writes_telemetry_to_csv(tmp_path: Path) -> None:
     result = process_packet(
         packet_data,
         address,
-        output_file,
+        file_path,
     )
 
     assert result is not None
