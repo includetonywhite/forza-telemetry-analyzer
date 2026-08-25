@@ -41,7 +41,6 @@ def receive_packets() -> None:
 def process_packet(
     data: bytes,
     address: tuple[str, int],
-    output_file: Path = OUTPUT_FILE,
 ) -> TelemetryData | None:
 
     try:
@@ -49,10 +48,8 @@ def process_packet(
     except PacketParseError as error:
         print(f"Invalid packet received from {address[0]}: {error}")
         return None
-    write_telemetry(output_file, telemetry_packet)
-
-    return telemetry_packet
-
+    
+    return  telemetry_packet
 
 if __name__ == "__main__":
     receive_packets()
