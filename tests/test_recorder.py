@@ -163,7 +163,7 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     assert row[0]["fuel"] == "0.31"
 
 
-def test_parse_packet_writes_telemetry_to_csv(tmp_path: Path) -> None:
+def test_process_packet_returns_telemetry(tmp_path: Path) -> None:
     values = [0] * 88
 
     values[0] = 1
@@ -177,23 +177,16 @@ def test_parse_packet_writes_telemetry_to_csv(tmp_path: Path) -> None:
     packet_data = struct.pack(_PACKET_FORMAT, *values)
 
     address = ("10.0.0.149", 5300)
-    file_path = tmp_path / "telemetry.csv"
 
     result = process_packet(
         packet_data,
         address,
-        file_path,
     )
-
+    
     assert result is not None
-    assert output_file.exists()
 
-    with output_file.open(newline="") as file:
-        reader = csv.DictReader(file)
-        rows = list(reader)
-
-    assert len(rows) == 1
-    assert rows[0]["timestamp_ms"] == "123456"
-    assert float(rows[0]["current_engine_rpm"]) == pytest.approx(4521.7)
-    assert float(rows[0]["acceleration_x"]) == pytest.approx(0.1)
-    assert float(rows[0]["tire_slip_ratio_front_left"]) == pytest.approx(0.0)
+    
+    assert result.timestamp_ms == 123456
+    assert result.current_engine_rpm == pytest.approx(4521.7)
+    assert result.acceleration_x == pytest.approx(0.1)
+    assert result.tire_slip_ratio_front_left == pytest.approx(0.0)
