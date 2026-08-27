@@ -4,7 +4,7 @@ import struct
 import pytest
 
 from forza_telemetry_analyzer.models import TelemetryData
-from forza_telemetry_analyzer.parser import _PACKET_FORMAT,parse_packet
+from forza_telemetry_analyzer.parser import _PACKET_FORMAT, parse_packet
 
 
 def test_parse_packet_returns_telemetry_data() -> None:

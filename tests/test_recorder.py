@@ -182,10 +182,9 @@ def test_process_packet_returns_telemetry(tmp_path: Path) -> None:
         packet_data,
         address,
     )
-    
+
     assert result is not None
 
-    
     assert result.timestamp_ms == 123456
     assert result.current_engine_rpm == pytest.approx(4521.7)
     assert result.acceleration_x == pytest.approx(0.1)

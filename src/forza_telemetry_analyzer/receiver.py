@@ -48,8 +48,9 @@ def process_packet(
     except PacketParseError as error:
         print(f"Invalid packet received from {address[0]}: {error}")
         return None
-    
-    return  telemetry_packet
+
+    return telemetry_packet
+
 
 if __name__ == "__main__":
     receive_packets()
