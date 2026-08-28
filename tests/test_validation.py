@@ -1,0 +1,47 @@
+from pathlib import Path
+
+import pytest
+
+from forza_telemetry_analyzer.validation import validate_timestamps
+
+
+def create_csv(tmp_path: Path, timestamps: list[int]) -> Path:
+    file_path = tmp_path / "telemetry.csv"
+
+    lines = ["timestamp_ms"]
+    lines.extend(str(timestamp) for timestamp in timestamps)
+
+    file_path.write_text("\n".join(lines) + "\n")
+
+    return file_path
+
+
+def test_validate_timestamps_returns_count_and_duration(
+    tmp_path: Path,
+) -> None:
+    file_path = create_csv(tmp_path, [1000, 1016, 1032, 1048])
+
+    row_count, duration = validate_timestamps(file_path)
+
+    assert row_count == 4
+    assert duration == pytest.approx(0.048)
+
+
+def test_validate_timestamps_rejects_empty_file(tmp_path: Path) -> None:
+    file_path = tmp_path / "telemetry.csv"
+    file_path.write_text("timestamp_ms\n")
+
+    with pytest.raises(ValueError, match="contains no data"):
+        validate_timestamps(file_path)
+
+
+def test_validate_timestamps_rejects_non_increasing_timestamps(
+    tmp_path: Path,
+) -> None:
+    file_path = create_csv(tmp_path, [1000, 1016, 1016, 1048])
+
+    with pytest.raises(
+        ValueError,
+        match="not strictly increasing",
+    ):
+        validate_timestamps(file_path)
