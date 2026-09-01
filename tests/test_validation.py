@@ -2,8 +2,10 @@ from pathlib import Path
 
 import pytest
 
-from forza_telemetry_analyzer.validation import validate_timestamps
-
+from forza_telemetry_analyzer.validation import (
+    validate_required_columns,
+    validate_timestamps,
+)
 
 def create_csv(tmp_path: Path, timestamps: list[int]) -> Path:
     file_path = tmp_path / "telemetry.csv"
@@ -45,3 +47,34 @@ def test_validate_timestamps_rejects_non_increasing_timestamps(
         match="not strictly increasing",
     ):
         validate_timestamps(file_path)
+
+def test_validate_required_columns_accepts_valid_csv(
+    tmp_path: Path,
+) -> None:
+    file_path = tmp_path / "telemetry.csv"
+
+    file_path.write_text(
+        "timestamp_ms,engine_max_rpm,current_engine_rpm,"
+        "acceleration_x,acceleration_y,acceleration_z,"
+        "speed,power,torque,boost,fuel\n"
+        "1000,8000,700,0,0,0,10,100,200,5,50\n"
+    )
+
+    validate_required_columns(file_path)
+
+def test_validate_required_columns_rejects_missing_columns(
+    tmp_path: Path, 
+) -> None:
+    file_path = tmp_path / "telemetry.csv"
+
+    file_path.write_text(
+        "timestamp_ms,engine_max_rpm,current_engine_rpm,"
+        "acceleration_x,acceleration_y,acceleration_z,"
+        "speed,power,torque,boost,fuel\n"
+    )
+    
+    with pytest.raises(
+        ValueError,
+        match = "Missing required telemetry columns: torque",
+    ):
+        validate_required_columns(file_path)
