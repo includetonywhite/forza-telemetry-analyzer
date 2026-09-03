@@ -4,6 +4,7 @@ import pytest
 
 from forza_telemetry_analyzer.validation import (
     validate_required_columns,
+    validate_telemetry_file,
     validate_timestamps,
 )
 
@@ -44,7 +45,7 @@ def test_validate_timestamps_rejects_non_increasing_timestamps(
 
     with pytest.raises(
         ValueError,
-        match="not strictly increasing",
+        match="must not go backward",
     ):
         validate_timestamps(file_path)
 
@@ -70,7 +71,7 @@ def test_validate_required_columns_rejects_missing_columns(
     file_path.write_text(
         "timestamp_ms,engine_max_rpm,current_engine_rpm,"
         "acceleration_x,acceleration_y,acceleration_z,"
-        "speed,power,torque,boost,fuel\n"
+        "speed,power,boost,fuel\n"
     )
     
     with pytest.raises(
@@ -78,3 +79,19 @@ def test_validate_required_columns_rejects_missing_columns(
         match = "Missing required telemetry columns: torque",
     ):
         validate_required_columns(file_path)
+
+def test_validate_telemetry_file_returns_summary(tmp_path : Path) -> None:
+    file_path = tmp_path / "telemetry.csv"
+    file_path.write_text(
+        "timestamp_ms,engine_max_rpm,current_engine_rpm,"
+        "acceleration_x,acceleration_y,acceleration_z,"
+        "speed,power,torque,boost,fuel\n"
+        "1000,8000,700,0,0,0,10,100,200,5,50\n"
+        "1016,8000,800,0,0,0,12,110,210,5,49\n"
+    )
+
+    row_count, duration = validate_telemetry_file(file_path)
+
+    assert row_count == 2
+    assert duration == pytest.approx(0.016)
+

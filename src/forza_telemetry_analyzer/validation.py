@@ -15,7 +15,8 @@ def validate_timestamps(file_path: Path) -> tuple[int, float]:
         raise ValueError("Telemetry file contains no data.")
 
     if any(
-        current <= previous for previous, current in zip(timestamps, timestamps[1:])
+        current < previous 
+        for previous, current in zip(timestamps, timestamps[1:])
     ):
         raise ValueError("Telemetry timestamps are not strictly increasing.")
 
@@ -51,3 +52,22 @@ def validate_required_columns(file_path: Path) -> None:
         missing = ", ".join(sorted(missing_columns))
         raise ValueError(f"Missing required telemetry columns: {missing}")
         
+def validate_telemetry_file(file_path: Path) -> tuple[int,float]:
+    """Validate a telemetry CSV and return row count and duration."""
+    validate_required_columns(file_path)
+    return validate_timestamps(file_path)
+
+if __name__ == "__main__":
+    import sys
+
+    file_path = Path(sys.argv[1])
+
+    try:
+        row_count, duration = validate_telemetry_file(file_path)
+    except (OSError, ValueError) as error:
+        print(f"Validation failed: {error}")
+        raise SystemExit(1)
+
+    print("Telemetry validation passed. ")
+    print(f"Rows: {row_count}")
+    print(f"Duration: {duration:.2f} seconds")
