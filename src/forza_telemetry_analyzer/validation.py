@@ -15,14 +15,15 @@ def validate_timestamps(file_path: Path) -> tuple[int, float]:
         raise ValueError("Telemetry file contains no data.")
 
     if any(
-        current <= previous 
-        for previous, current in zip(timestamps, timestamps[1:])
+        current <= previous
+        for previous, current in zip(timestamps, timestamps[1:], strict=False)
     ):
         raise ValueError("Must not go backward.")
 
     duration_seconds = (timestamps[-1] - timestamps[0]) / 1000
 
     return len(rows), duration_seconds
+
 
 def validate_required_columns(file_path: Path) -> None:
     """Validate that telemtrey CSV contains required columns."""
@@ -39,23 +40,25 @@ def validate_required_columns(file_path: Path) -> None:
         "boost",
         "fuel",
     }
-    
-    with file_path.open(newline = "") as file:
+
+    with file_path.open(newline="") as file:
         reader = csv.DictReader(file)
 
         if reader.fieldnames is None:
             raise ValueError("Telemetry file has no header.")
-        
+
         missing_columns = required_columns - set(reader.fieldnames)
 
     if missing_columns:
         missing = ", ".join(sorted(missing_columns))
         raise ValueError(f"Missing required telemetry columns: {missing}")
-        
-def validate_telemetry_file(file_path: Path) -> tuple[int,float]:
+
+
+def validate_telemetry_file(file_path: Path) -> tuple[int, float]:
     """Validate a telemetry CSV and return row count and duration."""
     validate_required_columns(file_path)
     return validate_timestamps(file_path)
+
 
 if __name__ == "__main__":
     import sys
@@ -66,7 +69,7 @@ if __name__ == "__main__":
         row_count, duration = validate_telemetry_file(file_path)
     except (OSError, ValueError) as error:
         print(f"Validation failed: {error}")
-        raise SystemExit(1)
+        raise SystemExit(1) from error
 
     print("Telemetry validation passed. ")
     print(f"Rows: {row_count}")
