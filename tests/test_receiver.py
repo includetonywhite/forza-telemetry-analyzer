@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.receiver import process_packet
 
 
 def test_process_packet_returns_telemetry() -> None:
-    values = [0] * 88
+    values: list[int | float ] = [0] * 88
 
     values[0] = 1
     values[1] = 123456

@@ -164,7 +164,7 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
 
 
 def test_process_packet_returns_telemetry(tmp_path: Path) -> None:
-    values = [0] * 88
+    values: list[int | float ] = [0] * 88
 
     values[0] = 1
     values[1] = 123456
