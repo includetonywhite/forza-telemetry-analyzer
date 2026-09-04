@@ -45,7 +45,7 @@ def test_validate_timestamps_rejects_non_increasing_timestamps(
 
     with pytest.raises(
         ValueError,
-        match="must not go backward",
+        match="Must not go backward",
     ):
         validate_timestamps(file_path)
 

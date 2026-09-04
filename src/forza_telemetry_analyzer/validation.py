@@ -15,10 +15,10 @@ def validate_timestamps(file_path: Path) -> tuple[int, float]:
         raise ValueError("Telemetry file contains no data.")
 
     if any(
-        current < previous 
+        current <= previous 
         for previous, current in zip(timestamps, timestamps[1:])
     ):
-        raise ValueError("Telemetry timestamps are not strictly increasing.")
+        raise ValueError("Must not go backward.")
 
     duration_seconds = (timestamps[-1] - timestamps[0]) / 1000
 
