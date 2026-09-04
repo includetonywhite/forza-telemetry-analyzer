@@ -1,4 +1,5 @@
 # Forza Telemetry Analyzer
+![CI](https://github.com/includetonywhite/forza-telemetry-analyzer/actions/workflows/ci.yml/badge.svg)
 
 Forza Horizon 6 UDP telemetry. Data path Xbox -> UDP -> parsed 324 byte packet -> store a run in csv. Parser and CSV recorder made. Identification, ET + Shift and live UI not made yet.
 
@@ -19,7 +20,7 @@ uv run python -m forza_telemetry_analyzer.receiver
 ## Current status
 - [x] packet parser (synthetic `struct` round-trip only; no Xbox capture in git)
 - [ ] Docker
-- [ ] GitHub Actions
+- [x] GitHub Actions
 - [ ] vehicle identification from a run
 - [ ] ET + shift points
 - [ ] live UI
