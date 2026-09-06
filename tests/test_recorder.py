@@ -161,7 +161,12 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     assert row[0]["torque"] == "100.25"
     assert row[0]["boost"] == "18"
     assert row[0]["fuel"] == "0.31"
-
+    assert row[0]["gear"] == "1"
+    assert row[0]["wheel_rotation_speed_front_left"] == "1.05"
+    assert row[0]["wheel_rotation_speed_front_right"] == "1.07"
+    assert row[0]["wheel_rotation_speed_rear_left"] == "2.00"
+    assert row[0]["wheel_rotation_speed_rear_right"] == "
+    
 
 def test_process_packet_returns_telemetry(tmp_path: Path) -> None:
     values: list[int | float] = [0] * 88
