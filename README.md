@@ -19,7 +19,7 @@ uv run python -m forza_telemetry_analyzer.receiver
 
 ## Current status
 - [x] packet parser (synthetic `struct` round-trip only; no Xbox capture in git)
-- [ ] Docker (block on this machine; revisit)
+- [ ] Docker (block on this machine revisit)
 - [x] GitHub Actions
 - [ ] vehicle identification from a run
 - [ ] ET + shift points
