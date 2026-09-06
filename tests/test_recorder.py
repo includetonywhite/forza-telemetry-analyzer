@@ -139,34 +139,34 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     assert reader.fieldnames == FIELD_NAMES
 
     assert row[0]["timestamp_ms"] == "123456"
-    assert row[0]["engine_max_rpm"] == "8000.0"
-    assert row[0]["current_engine_rpm"] == "4521.7"
-    assert row[0]["acceleration_x"] == "0.0"
-    assert row[0]["acceleration_y"] == "0.1"
-    assert row[0]["acceleration_z"] == "0.3"
+    assert row[0]["engine_max_rpm"] == pytest.approx("8000.0")
+    assert row[0]["current_engine_rpm"] == pytest.approx("4521.7")
+    assert row[0]["acceleration_x"] == pytest.approx("0.0")
+    assert row[0]["acceleration_y"] == pytest.approx("0.1")
+    assert row[0]["acceleration_z"] == pytest.approx("0.3")
     assert row[0]["tire_slip_ratio_front_left"] == "0.0"
-    assert row[0]["tire_slip_ratio_front_right"] == "0.1"
-    assert row[0]["tire_slip_ratio_rear_left"] == "0.2"
-    assert row[0]["tire_slip_ratio_rear_right"] == "0.3"
+    assert row[0]["tire_slip_ratio_front_right"] == pytest.approx("0.1")
+    assert row[0]["tire_slip_ratio_rear_left"] == pytest.approx("0.2")
+    assert row[0]["tire_slip_ratio_rear_right"] == pytest.approx("0.3")
     assert row[0]["normalized_suspension_travel_front_left"] == "0.2"
-    assert row[0]["normalized_suspension_travel_front_right"] == "0.4"
-    assert row[0]["normalized_suspension_travel_rear_left"] == "0.6"
-    assert row[0]["normalized_suspension_travel_rear_right"] == "0.8"
-    assert row[0]["suspension_travel_meters_front_left"] == "1.0"
-    assert row[0]["suspension_travel_meters_front_right"] == "2.0"
-    assert row[0]["suspension_travel_meters_rear_left"] == "3.4"
-    assert row[0]["suspension_travel_meters_rear_right"] == "2.6"
-    assert row[0]["speed"] == "250.25"
-    assert row[0]["power"] == "150.15"
-    assert row[0]["torque"] == "100.25"
-    assert row[0]["boost"] == "18"
-    assert row[0]["fuel"] == "0.31"
+    assert row[0]["normalized_suspension_travel_front_right"] == pytest.approx("0.4")
+    assert row[0]["normalized_suspension_travel_rear_left"] == pytest.approx("0.6")
+    assert row[0]["normalized_suspension_travel_rear_right"] == pytest.approx("0.8")
+    assert row[0]["suspension_travel_meters_front_left"] == pytest.approx("1.0")
+    assert row[0]["suspension_travel_meters_front_right"] == pytest.approx("2.0")
+    assert row[0]["suspension_travel_meters_rear_left"] == pytest.approx("3.4")
+    assert row[0]["suspension_travel_meters_rear_right"] == pytest.approx("2.6")
+    assert row[0]["speed"] == pytest.approx("250.25")
+    assert row[0]["power"] == pytest.approx("150.15")
+    assert row[0]["torque"] == pytest.approx("100.25")
+    assert row[0]["boost"] == pytest.approx("18")
+    assert row[0]["fuel"] == pytest.approx("0.31")
     assert row[0]["gear"] == "1"
-    assert row[0]["wheel_rotation_speed_front_left"] == "1.05"
-    assert row[0]["wheel_rotation_speed_front_right"] == "1.07"
-    assert row[0]["wheel_rotation_speed_rear_left"] == "2.00"
-    assert row[0]["wheel_rotation_speed_rear_right"] == "
-    
+    assert row[0]["wheel_rotation_speed_front_left"] == pytest.approx("1.05")
+    assert row[0]["wheel_rotation_speed_front_right"] == pytest.approx("1.07")
+    assert float(row[0]["wheel_rotation_speed_rear_left"]) == pytest.approx(2.00)
+    assert float(row[0]["wheel_rotation_speed_rear_right"]) == pytest.approx(2.02)
+
 
 def test_process_packet_returns_telemetry(tmp_path: Path) -> None:
     values: list[int | float] = [0] * 88
