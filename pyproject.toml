@@ -7,7 +7,9 @@ authors = [
     { name = "@include.tony.white@gmail.com" }
 ]
 requires-python = ">=3.13,<3.14"
-dependencies = []
+dependencies = [
+    "pydantic>=2"
+    ]
 
 [project.scripts]
 forza-telemetry-analyzer = "forza_telemetry_analyzer:main"
@@ -22,6 +24,7 @@ dev = [
     "mypy>=2.3.0",
     "pytest>=9.1.1",
     "ruff>=0.16.1",
+    "pydantic>=2",
 ]
 
 [tool.ruff]
@@ -43,6 +46,7 @@ quote-style = "double"
 [tool.mypy]
 python_version = "3.13"
 strict = true
+plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
