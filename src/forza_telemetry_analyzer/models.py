@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 
+
 class TelemetryData(BaseModel):
     model_config = ConfigDict(frozen=True)
     is_race_on: int
