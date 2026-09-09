@@ -111,4 +111,4 @@ def write_telemetry(
         if not file_exists or file_path.stat().st_size == 0:
             writer.writeheader()
 
-        writer.writerow(vars(telemetry))
+        writer.writerow(telemetry.model_dump())

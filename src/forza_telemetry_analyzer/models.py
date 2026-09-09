@@ -1,8 +1,7 @@
-from dataclasses import dataclass
+from pydantic import BaseModel, ConfigDict
 
-
-@dataclass(frozen=True)
-class TelemetryData:
+class TelemetryData(BaseModel):
+    model_config = ConfigDict(frozen=True)
     is_race_on: int
     timestamp_ms: int
     engine_max_rpm: float

@@ -159,7 +159,7 @@ def test_write_telemetry_appends_data(tmp_path: Path) -> None:
     assert row[0]["speed"] == pytest.approx("250.25")
     assert row[0]["power"] == pytest.approx("150.15")
     assert row[0]["torque"] == pytest.approx("100.25")
-    assert row[0]["boost"] == pytest.approx("18")
+    assert row[0]["boost"] == pytest.approx("18.0")
     assert row[0]["fuel"] == pytest.approx("0.31")
     assert row[0]["gear"] == "1"
     assert row[0]["wheel_rotation_speed_front_left"] == pytest.approx("1.05")
