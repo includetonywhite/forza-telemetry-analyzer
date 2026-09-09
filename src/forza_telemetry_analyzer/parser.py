@@ -9,7 +9,7 @@ from forza_telemetry_analyzer.models import TelemetryData
 _PACKET_FORMAT = (
     "<iIffffffffffffffffffffffffff"
     "fiiiiiiiiffffffffffffffff"
-    "iiiiIIfffffffffffffffffff"
+    "iiiiiifffffffffffffffffff"
     "HBBBBBBbbbx"
 )
 _PACKET_SIZE = struct.calcsize(_PACKET_FORMAT)
